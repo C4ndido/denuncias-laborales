@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Crónica Empresarial - Plataforma de Denuncias Laborales
 
 Plataforma web para denuncias laborales anónimas en República Dominicana.
@@ -37,8 +36,4 @@ Las contribuciones son bienvenidas. Por favor, abre un issue para discutir los c
 
 ## Licencia
 
-Este proyecto está bajo la Licencia MIT. 
-=======
-# denuncias-laborales
-denuncias-laborales
->>>>>>> c4cd6f5217bc142d949776d96b60f5405e195978
+Este proyecto está bajo la Licencia MIT.
