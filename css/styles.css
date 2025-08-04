@@ -1,17 +1,25 @@
-/* Variables de colores */
+/* Variables de colores mejoradas */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #34495e;
-    --accent-color: #e74c3c;
-    --light-color: #ecf0f1;
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --accent-color: #ff6b6b;
+    --light-color: #f8f9fa;
     --dark-color: #2c3e50;
-    --gradient-start: #2c3e50;
-    --gradient-end: #3498db;
+    --gradient-start: #667eea;
+    --gradient-end: #764ba2;
+    --success-color: #51cf66;
+    --warning-color: #ffd43b;
+    --error-color: #ff6b6b;
     --instagram-color: #E1306C;
     --twitter-color: #1DA1F2;
     --facebook-color: #4267B2;
     --focus-outline: 3px solid var(--accent-color);
     --focus-outline-offset: 2px;
+    --shadow-light: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-medium: 0 8px 25px rgba(0,0,0,0.15);
+    --shadow-heavy: 0 12px 35px rgba(0,0,0,0.2);
+    --border-radius: 8px;
+    --border-radius-large: 15px;
 }
 
 /* Importar fuentes de Google */
@@ -196,13 +204,16 @@ a:focus {
     color: #0c5460;
 }
 
-/* Hero Section */
+/* Hero Section Mejorado */
 .hero-section {
     background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
     padding: 6rem 0;
     color: white;
     position: relative;
     overflow: hidden;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
 }
 
 .hero-section::before {
