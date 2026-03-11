@@ -1,371 +1,333 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Plataforma de denuncias laborales anónimas en República Dominicana">
-    <title>Crónica Empresarial | Tu Voz en el Mundo Laboral</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- Font Awesome para iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crónica Empresarial — Denuncias Laborales RD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Skip to main content link -->
-    <a href="#main-content" class="visually-hidden-focusable">Saltar al contenido principal</a>
 
-    <!-- Header -->
-    <header class="bg-dark text-white py-3" role="banner">
-        <nav class="navbar navbar-expand-lg navbar-dark" role="navigation" aria-label="Navegación principal">
-            <div class="container">
-                <a class="navbar-brand" href="#" aria-label="Crónica Empresarial - Inicio">
-                    <i class="fas fa-newspaper me-2" aria-hidden="true"></i>
-                    <span class="brand-text">Crónica Empresarial</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegación">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto" role="menubar">
-                        <li class="nav-item" role="none">
-                            <a class="nav-link active" href="#" role="menuitem" aria-current="page">Inicio</a>
-                        </li>
-                        <li class="nav-item" role="none">
-                            <a class="nav-link" href="#" role="menuitem" data-bs-toggle="modal" data-bs-target="#denunciaModal">
-                                Publicar Denuncia
-                            </a>
-                        </li>
-                        <li class="nav-item" role="none">
-                            <a class="nav-link" href="#denuncias-recientes" role="menuitem">Denuncias Recientes</a>
-                        </li>
-                        <li class="nav-item" role="none">
-                            <a class="nav-link" href="#" role="menuitem" data-bs-toggle="modal" data-bs-target="#moderacionModal">
-                                <span class="notificaciones-badge">
-                                    Panel de Moderación
-                                    <span id="notificacionesContador" class="badge" aria-live="polite">0</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="nav-item" role="none">
-                            <a class="nav-link" href="#acerca-de" role="menuitem">Acerca de</a>
-                        </li>
-                    </ul>
-                    <!-- Botones de Redes Sociales -->
-                    <div class="social-buttons ms-3" role="group" aria-label="Redes sociales">
-                        <a href="#" class="btn btn-outline-light btn-sm me-2" target="_blank" rel="noopener" aria-label="Síguenos en Instagram">
-                            <i class="fab fa-instagram" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-light btn-sm me-2" target="_blank" rel="noopener" aria-label="Síguenos en Twitter">
-                            <i class="fab fa-twitter" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="btn btn-outline-light btn-sm" target="_blank" rel="noopener" aria-label="Síguenos en Facebook">
-                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                </div>
+<header>
+  <div class="header-top">
+    <div class="logo-block">
+      <h1>Crónica Empresarial</h1>
+      <span>Plataforma de Denuncias Laborales · RD</span>
+    </div>
+    <div class="header-badge">100% Anónimo</div>
+  </div>
+  <nav>
+    <button class="active" onclick="showSection('inicio')">Inicio</button>
+    <button onclick="showSection('denuncia')">Hacer Denuncia</button>
+    <button onclick="showSection('ranking')">Ranking de Empresas</button>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">República Dominicana · Protección Laboral</div>
+    <h2>Tu voz importa.<br>Tu identidad, protegida.</h2>
+    <p>Denuncia situaciones laborales injustas y consulta el ranking de empresas evaluado por trabajadores de la RD. Sin registro, sin datos personales.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num" id="stat-denuncias">0</span>
+        <span class="stat-label">Denuncias enviadas</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-empresas">0</span>
+        <span class="stat-label">Empresas evaluadas</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-votos">0</span>
+        <span class="stat-label">Votos emitidos</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- INICIO -->
+  <div id="section-inicio" class="section active">
+    <h2 class="section-title">¿Qué puedes hacer aquí?</h2>
+    <p class="section-sub">Herramientas anónimas para empleados que buscan justicia y transparencia.</p>
+
+    <div class="home-cards">
+      <div class="home-card" onclick="showSection('denuncia')">
+        <div class="home-card-icon">📋</div>
+        <div class="home-card-title">Hacer una Denuncia</div>
+        <p class="home-card-desc">Reporta situaciones injustas como empleado o empresa. Sin registro, sin datos personales.</p>
+      </div>
+      <div class="home-card" onclick="showSection('ranking')">
+        <div class="home-card-icon">⭐</div>
+        <div class="home-card-title">Ranking de Empresas</div>
+        <p class="home-card-desc">Consulta y vota empresas. La comunidad propone y califica con estrellas del 1 al 5.</p>
+      </div>
+      <div class="home-card" onclick="abrirProponerEmpresa()">
+        <div class="home-card-icon">🏢</div>
+        <div class="home-card-title">Proponer una Empresa</div>
+        <p class="home-card-desc">¿No encuentras tu empresa? Proponla al ranking para que otros empleados la evalúen.</p>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; margin-bottom:20px;">Empresas más votadas</h3>
+    <div id="inicio-ranking" class="empresa-grid"></div>
+  </div>
+
+  <!-- DENUNCIA -->
+  <div id="section-denuncia" class="section">
+    <h2 class="section-title">Hacer una Denuncia</h2>
+    <p class="section-sub">Tu identidad nunca será revelada. No se almacenan datos personales.</p>
+
+    <div class="form-card">
+      <div class="anon-badge">Tu denuncia es completamente anónima. No se requiere registro ni identificación.</div>
+
+      <div class="form-tabs">
+        <button class="form-tab active" onclick="switchTab('empleado', this)">Soy Empleado</button>
+        <button class="form-tab" onclick="switchTab('empresa-den', this)">Soy Empresa</button>
+      </div>
+
+      <form onsubmit="enviarDenuncia(event)" id="form-denuncia">
+
+        <div id="tab-empleado">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre de la empresa</label>
+              <input type="text" id="emp-empresa" placeholder="Ej: Empresa XYZ, S.R.L." required>
             </div>
-        </nav>
-    </header>
-
-    <!-- Main Content -->
-    <main id="main-content" role="main">
-        <!-- Hero Section -->
-        <section class="hero-section py-5" aria-labelledby="hero-title">
-            <div class="container text-center">
-                <h1 class="display-4 mb-4 hero-title" id="hero-title">Crónica Empresarial</h1>
-                <div class="hero-message">
-                    <p class="lead mb-4">Tu plataforma para denunciar situaciones laborales injustas de forma anónima y segura en República Dominicana.</p>
-                    <div class="disclaimer-box">
-                        <p><i class="fas fa-info-circle me-2" aria-hidden="true"></i>
-                        <strong>Estas denuncias son con fines educativos o de conciencia pública, ya que siempre serán anónimas. Por favor, eviten usar nombres propios de personas y nombres de empresas específicos.</strong></p>
-                    </div>
-                </div>
-                <div class="hero-buttons mt-4">
-                    <button class="btn btn-light btn-lg me-3" data-bs-toggle="modal" data-bs-target="#denunciaModal" aria-label="Denunciar como empleado">
-                        <i class="fas fa-user-tie me-2" aria-hidden="true"></i>Denuncia como Empleado
-                    </button>
-                    <button class="btn btn-outline-light btn-lg" data-bs-toggle="modal" data-bs-target="#denunciaModal" aria-label="Denunciar como empresa">
-                        <i class="fas fa-building me-2" aria-hidden="true"></i>Denuncia como Empresa
-                    </button>
-                </div>
-                <!-- Botones de Redes Sociales en Hero -->
-                <div class="social-buttons-hero mt-5" role="group" aria-label="Redes sociales">
-                    <h5 class="text-white mb-3">Síguenos en redes sociales</h5>
-                    <a href="#" class="btn btn-light btn-lg me-3" target="_blank" rel="noopener" aria-label="Síguenos en Instagram">
-                        <i class="fab fa-instagram me-2" aria-hidden="true"></i>Instagram
-                    </a>
-                    <a href="#" class="btn btn-light btn-lg me-3" target="_blank" rel="noopener" aria-label="Síguenos en Twitter">
-                        <i class="fab fa-twitter me-2" aria-hidden="true"></i>Twitter
-                    </a>
-                    <a href="#" class="btn btn-light btn-lg" target="_blank" rel="noopener" aria-label="Síguenos en Facebook">
-                        <i class="fab fa-facebook-f me-2" aria-hidden="true"></i>Facebook
-                    </a>
-                </div>
+            <div class="form-group">
+              <label>Sector</label>
+              <select id="emp-sector" required>
+                <option value="">Selecciona...</option>
+                <option>Banca y Finanzas</option><option>Comercio al por menor</option>
+                <option>Construcción</option><option>Educación</option>
+                <option>Manufactura</option><option>Salud</option>
+                <option>Tecnología</option><option>Telecomunicaciones</option>
+                <option>Turismo y Hotelería</option><option>Transporte</option><option>Otro</option>
+              </select>
             </div>
-        </section>
-
-        <!-- Sección de Ranking de Empresas -->
-        <section class="ranking-section py-5" aria-labelledby="ranking-title">
-            <div class="container">
-                <div class="ranking-header">
-                    <h2 class="text-center mb-4" id="ranking-title">Mejores Empresas para Trabajar en República Dominicana 2025</h2>
-                    <div class="ranking-controls">
-                        <div class="ranking-filters">
-                            <div class="btn-group" role="group" aria-label="Filtros de empresas">
-                                <button type="button" class="btn btn-outline-primary active" data-filter="all" aria-pressed="true">
-                                    <i class="fas fa-globe" aria-hidden="true"></i>Todas
-                                </button>
-                                <button type="button" class="btn btn-outline-primary" data-filter="tecnologia" aria-pressed="false">
-                                    <i class="fas fa-microchip" aria-hidden="true"></i>Tecnología
-                                </button>
-                                <button type="button" class="btn btn-outline-primary" data-filter="finanzas" aria-pressed="false">
-                                    <i class="fas fa-landmark" aria-hidden="true"></i>Finanzas
-                                </button>
-                                <button type="button" class="btn btn-outline-primary" data-filter="servicios" aria-pressed="false">
-                                    <i class="fas fa-concierge-bell" aria-hidden="true"></i>Servicios
-                                </button>
-                                <button type="button" class="btn btn-outline-primary" data-filter="manufactura" aria-pressed="false">
-                                    <i class="fas fa-industry" aria-hidden="true"></i>Manufactura
-                                </button>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevaEmpresaModal" aria-label="Agregar nueva empresa">
-                            <i class="fas fa-plus me-2" aria-hidden="true"></i>Agregar Empresa
-                        </button>
-                    </div>
-                </div>
-                <div class="ranking-preview">
-                    <div class="top-3-empresas" role="list" aria-label="Top 3 empresas">
-                        <!-- Las 3 primeras empresas se mostrarán aquí -->
-                    </div>
-                    <div class="ranking-toggle">
-                        <button class="btn btn-link" type="button" data-bs-toggle="collapse" data-bs-target="#rankingCompleto" 
-                                aria-expanded="false" aria-controls="rankingCompleto">
-                            <i class="fas fa-chevron-down me-2" aria-hidden="true"></i>Ver ranking completo
-                        </button>
-                    </div>
-                    <div class="collapse" id="rankingCompleto">
-                        <div id="empresas-ranking" class="ranking-list" role="list" aria-label="Lista completa de empresas">
-                            <!-- El resto de empresas se cargarán aquí -->
-                        </div>
-                    </div>
-                </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Provincia</label>
+              <select id="emp-provincia" required>
+                <option value="">Selecciona...</option>
+                <option>Distrito Nacional</option><option>Santo Domingo</option>
+                <option>Santiago</option><option>La Vega</option>
+                <option>San Pedro de Macorís</option><option>La Romana</option>
+                <option>Puerto Plata</option><option>San Cristóbal</option><option>Otra</option>
+              </select>
             </div>
-        </section>
-
-        <!-- Sección de Información -->
-        <section class="info-sections py-5" aria-labelledby="info-title">
-            <div class="container">
-                <div class="row g-4">
-                    <!-- Sección Empleados -->
-                    <div class="col-md-6">
-                        <div class="info-card">
-                            <div class="info-icon" aria-hidden="true">
-                                <i class="fas fa-user-tie"></i>
-                            </div>
-                            <h3 id="info-title">Para Empleados</h3>
-                            <p>Si has experimentado situaciones injustas en tu lugar de trabajo en República Dominicana, esta es tu plataforma para denunciar de manera anónima y segura. Tu identidad está protegida mientras tu voz es escuchada.</p>
-                            <ul class="info-list" role="list">
-                                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Denuncias 100% anónimas</li>
-                                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Protección de tu identidad</li>
-                                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Soporte y orientación legal</li>
-                                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Conforme a leyes dominicanas</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!-- Sección Empresas -->
-                    <div class="col-md-6">
-                        <div class="info-card">
-                            <div class="info-icon" aria-hidden="true">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <h3>Para Empresas</h3>
-                            <p>Como empresa en República Dominicana, puedes reportar situaciones que afecten a tu organización o a tus empleados. Mantenemos la confidencialidad mientras trabajamos por un ambiente laboral más justo.</p>
-                            <ul class="info-list" role="list">
-                                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Reportes confidenciales</li>
-                                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Análisis de clima laboral</li>
-                                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Recursos de mejora</li>
-                                <li><i class="fas fa-check-circle" aria-hidden="true"></i> Cumplimiento legal RD</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+              <label>Tipo de irregularidad</label>
+              <select id="emp-tipo" required>
+                <option value="">Selecciona...</option>
+                <option>Salarios no pagados o retrasados</option>
+                <option>Horas extras no remuneradas</option>
+                <option>Acoso laboral o mobbing</option>
+                <option>Discriminación</option>
+                <option>Despido injustificado</option>
+                <option>Condiciones inseguras</option>
+                <option>Violación de contrato</option>
+                <option>No pago de prestaciones</option>
+                <option>Otro</option>
+              </select>
             </div>
-        </section>
-
-        <!-- Listado de Denuncias -->
-        <section id="denuncias-recientes" class="denuncias-section py-5 bg-light" aria-labelledby="denuncias-title">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <h2 class="text-center mb-4" id="denuncias-title">Denuncias Recientes</h2>
-                        <p class="text-center mb-5">Últimas denuncias laborales reportadas en nuestra plataforma</p>
-                        
-                        <!-- Sistema de Búsqueda y Filtros -->
-                        <div class="search-filters mb-4">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="search-box">
-                                        <input type="search" class="form-control" id="searchDenuncias" 
-                                               placeholder="Buscar denuncias..." aria-label="Buscar denuncias">
-                                        <i class="fas fa-search search-icon"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="filter-controls">
-                                        <select class="form-select" id="filterTipo" aria-label="Filtrar por tipo de denuncia">
-                                            <option value="">Tipo de Denuncia</option>
-                                            <option value="acoso">Acoso Laboral</option>
-                                            <option value="discriminacion">Discriminación</option>
-                                            <option value="abuso">Abuso de Poder</option>
-                                            <option value="salario">Salario/Contrato</option>
-                                            <option value="seguridad">Seguridad Laboral</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <select class="form-select" id="filterSector" aria-label="Filtrar por sector laboral">
-                                        <option value="">Sector Laboral</option>
-                                        <option value="tecnologia">Tecnología</option>
-                                        <option value="salud">Salud</option>
-                                        <option value="educacion">Educación</option>
-                                        <option value="finanzas">Finanzas</option>
-                                        <option value="retail">Retail</option>
-                                        <option value="manufactura">Manufactura</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <select class="form-select" id="filterUbicacion" aria-label="Filtrar por ubicación">
-                                        <option value="">Ubicación</option>
-                                        <option value="santo-domingo">Santo Domingo</option>
-                                        <option value="santiago">Santiago</option>
-                                        <option value="la-vega">La Vega</option>
-                                        <option value="puerto-plata">Puerto Plata</option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <select class="form-select" id="filterFecha" aria-label="Filtrar por fecha">
-                                        <option value="">Fecha</option>
-                                        <option value="hoy">Hoy</option>
-                                        <option value="semana">Esta Semana</option>
-                                        <option value="mes">Este Mes</option>
-                                        <option value="año">Este Año</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Contador de Resultados -->
-                        <div class="results-count mb-3">
-                            <p class="text-muted">Mostrando <span id="denunciasCount">0</span> denuncias</p>
-                        </div>
-
-                        <!-- Lista de Denuncias -->
-                        <div id="denuncias-container" class="row g-4" role="list" aria-label="Lista de denuncias recientes">
-                            <!-- Las denuncias se cargarán dinámicamente aquí -->
-                        </div>
-
-                        <!-- Paginación -->
-                        <div class="pagination-container mt-4">
-                            <nav aria-label="Navegación de denuncias">
-                                <ul class="pagination justify-content-center" id="denunciasPagination">
-                                    <!-- La paginación se generará dinámicamente -->
-                                </ul>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sistema de Notificaciones -->
-        <div class="notifications-container" aria-live="polite">
-            <div id="notificationsList" class="notifications-list">
-                <!-- Las notificaciones se mostrarán aquí -->
-            </div>
+          </div>
+          <div class="form-group">
+            <label>Descripción detallada</label>
+            <textarea id="emp-descripcion" placeholder="Describe la situación. No incluyas datos que te puedan identificar." required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Fecha aproximada del incidente</label>
+            <input type="month" id="emp-fecha">
+          </div>
         </div>
 
-        <!-- Botones de Compartir -->
-        <div class="social-share mt-4">
-            <h5>Compartir en redes sociales</h5>
-            <div class="d-flex gap-2">
-                <a href="https://www.facebook.com/sharer/sharer.php?u=https://tudominio.com" 
-                   class="btn btn-primary" 
-                   target="_blank"
-                   rel="noopener"
-                   onclick="window.open(this.href, 'facebook-share', 'width=580,height=296'); return false;">
-                    <i class="fab fa-facebook-f"></i> Facebook
-                </a>
-                <a href="https://twitter.com/intent/tweet?text=Denuncias%20Laborales%20RD&url=https://tudominio.com" 
-                   class="btn btn-info" 
-                   target="_blank"
-                   rel="noopener"
-                   onclick="window.open(this.href, 'twitter-share', 'width=580,height=296'); return false;">
-                    <i class="fab fa-twitter"></i> Twitter
-                </a>
-                <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://tudominio.com&title=Denuncias%20Laborales%20RD" 
-                   class="btn btn-primary" 
-                   target="_blank"
-                   rel="noopener"
-                   onclick="window.open(this.href, 'linkedin-share', 'width=580,height=296'); return false;">
-                    <i class="fab fa-linkedin-in"></i> LinkedIn
-                </a>
-                <a href="https://api.whatsapp.com/send?text=Visita%20Denuncias%20Laborales%20RD%20https://tudominio.com" 
-                   class="btn btn-success" 
-                   target="_blank"
-                   rel="noopener">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
+        <div id="tab-empresa-den" style="display:none;">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nombre de tu empresa</label>
+              <input type="text" id="ent-empresa" placeholder="Nombre de tu organización">
+            </div>
+            <div class="form-group">
+              <label>Sector</label>
+              <select id="ent-sector">
+                <option value="">Selecciona...</option>
+                <option>Banca y Finanzas</option><option>Comercio al por menor</option>
+                <option>Construcción</option><option>Educación</option>
+                <option>Manufactura</option><option>Salud</option>
+                <option>Tecnología</option><option>Telecomunicaciones</option>
+                <option>Turismo y Hotelería</option><option>Transporte</option><option>Otro</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Situación a reportar</label>
+            <select id="ent-tipo">
+              <option value="">Selecciona...</option>
+              <option>Empleado con conducta inapropiada</option>
+              <option>Fraude interno</option>
+              <option>Conflicto con proveedor</option>
+              <option>Irregularidad regulatoria</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Descripción del caso</label>
+            <textarea id="ent-descripcion" placeholder="Describe la situación de forma objetiva."></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary">Enviar Denuncia Anónima</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- RANKING -->
+  <div id="section-ranking" class="section">
+    <div class="ranking-header">
+      <div>
+        <h2 class="section-title">Ranking de Empresas</h2>
+        <p class="section-sub">Evaluado por empleados. Propuesto por la comunidad.</p>
+      </div>
+      <button class="btn-secondary" onclick="abrirProponerEmpresa()">+ Proponer empresa</button>
+    </div>
+
+    <div class="ranking-controls">
+      <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Buscar empresa o sector..." oninput="filtrarEmpresas()">
+    </div>
+
+    <div class="ranking-filters">
+      <button class="filter-btn active" onclick="setFiltro('todos', this)">Todos</button>
+      <button class="filter-btn" onclick="setFiltro('mejor', this)">Mejor calificadas</button>
+      <button class="filter-btn" onclick="setFiltro('peor', this)">Peor calificadas</button>
+      <button class="filter-btn" onclick="setFiltro('mas-votadas', this)">Más votadas</button>
+    </div>
+    </div>
+
+    <hr class="section-divider" style="margin:20px 0;">
+    <div id="ranking-grid" class="empresa-grid"></div>
+  </div>
+
+</main>
+
+<footer class="footer-main py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h5>Crónica Empresarial</h5>
+                <p class="mb-2 text-muted">Foro de denuncias laborales anónimas. Promovemos las mejores prácticas y la transparencia.</p>
+                <p class="small text-muted"><i class="fas fa-shield-alt me-1"></i>Proyecto de código abierto construido con colaboración comunitaria.</p>
+            </div>
+            <div class="col-md-4 text-md-end footer-actions">
+                <a href="https://github.com/C4ndido/denuncias-laborales" target="_blank" class="btn-outline" style="display:inline-flex; align-items:center; gap:8px;">
+                    <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" data-view-component="true" class="octicon octicon-mark-github">
+                      <path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.46-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
+                    </svg>
+                    Colabora en GitHub
                 </a>
             </div>
         </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5" role="contentinfo">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <h5>Crónica Empresarial</h5>
-                    <p>Tu plataforma para denunciar situaciones laborales injustas de forma anónima.</p>
-                </div>
-                <div class="col-md-6 text-md-end">
-                    <nav aria-label="Enlaces del pie de página">
-                        <ul class="list-unstyled">
-                            <li><a href="#" class="text-white">Política de Privacidad</a></li>
-                            <li><a href="#" class="text-white">Términos y Condiciones</a></li>
-                            <li><a href="#" class="text-white">Contacto</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <p class="mb-0">
-                        <small>
-                            &copy; 2025 Crónica Empresarial - República Dominicana. Todos los derechos reservados.
-                            <br>
-                            <span class="text-muted">Desarrollado con <i class="fas fa-heart text-danger" aria-hidden="true"></i> para el sector laboral dominicano</span>
-                        </small>
-                    </p>
-                </div>
-            </div>
+        <hr class="my-3 border-secondary">
+        <div class="text-center text-muted">
+            <small>&copy; 2026 Crónica Empresarial - República Dominicana</small>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- Bootstrap JS y Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-storage-compat.js"></script>
-    
-    <!-- Custom JS -->
-    <script src="js/main.js"></script>
+<!-- MODAL: PROPONER EMPRESA -->
+<div class="modal-overlay" id="modal-proponer">
+  <div class="modal">
+    <button class="modal-close" onclick="cerrarModal('modal-proponer')">✕</button>
+    <div class="modal-title">Proponer una Empresa</div>
+    <p class="modal-sub">Cualquier persona puede proponer una empresa al ranking. Tu identidad permanece anónima.</p>
+    <form onsubmit="proponerEmpresa(event)">
+      <div class="form-group">
+        <label>Nombre de la empresa</label>
+        <input type="text" id="prop-nombre" placeholder="Nombre oficial de la empresa" required>
+      </div>
+      <div class="form-group">
+        <label>Sector</label>
+        <select id="prop-sector" required>
+          <option value="">Selecciona...</option>
+          <option>Banca y Finanzas</option><option>Comercio al por menor</option>
+          <option>Construcción</option><option>Educación</option>
+          <option>Manufactura</option><option>Salud</option>
+          <option>Tecnología</option><option>Telecomunicaciones</option>
+          <option>Turismo y Hotelería</option><option>Transporte</option><option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Tu calificación inicial (1–5 estrellas)</label>
+        <div class="star-vote-input" id="prop-stars" data-selected="0">
+          <span class="star-input" data-val="1">★</span>
+          <span class="star-input" data-val="2">★</span>
+          <span class="star-input" data-val="3">★</span>
+          <span class="star-input" data-val="4">★</span>
+          <span class="star-input" data-val="5">★</span>
+        </div>
+        <p style="font-size:0.75rem; color:var(--gray); margin-top:6px;" id="prop-stars-label">Selecciona una calificación</p>
+      </div>
+      <div class="form-group">
+        <label>Comentario (opcional)</label>
+        <textarea id="prop-comentario" placeholder="¿Cómo es el ambiente laboral en esta empresa?" style="min-height:80px;"></textarea>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button type="submit" class="btn-primary" style="width:auto; flex:1;">Proponer al Ranking</button>
+        <button type="button" class="btn-outline" onclick="cerrarModal('modal-proponer')">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL: VOTAR -->
+<div class="modal-overlay" id="modal-votar">
+  <div class="modal">
+    <button class="modal-close" onclick="cerrarModal('modal-votar')">✕</button>
+    <div class="modal-title" id="votar-empresa-nombre">Calificar empresa</div>
+    <p class="modal-sub">Tu voto es anónimo y contribuye al ranking comunitario.</p>
+    <form onsubmit="submitVoto(event)">
+      <div class="form-group">
+        <label>Tu calificación (1–5 estrellas)</label>
+        <div class="star-vote-input" id="votar-stars" data-selected="0">
+          <span class="star-input" data-val="1">★</span>
+          <span class="star-input" data-val="2">★</span>
+          <span class="star-input" data-val="3">★</span>
+          <span class="star-input" data-val="4">★</span>
+          <span class="star-input" data-val="5">★</span>
+        </div>
+        <p style="font-size:0.75rem; color:var(--gray); margin-top:6px;" id="votar-stars-label">Selecciona una calificación</p>
+      </div>
+      <div class="form-group">
+        <label>Comentario (opcional)</label>
+        <textarea id="votar-comentario" placeholder="Comparte tu experiencia laboral en esta empresa..." style="min-height:80px;"></textarea>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button type="submit" class="btn-primary" style="width:auto; flex:1;">Enviar Calificación</button>
+        <button type="button" class="btn-outline" onclick="cerrarModal('modal-votar')">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL: COMENTARIOS -->
+<div class="modal-overlay" id="modal-comentarios">
+  <div class="modal">
+    <button class="modal-close" onclick="cerrarModal('modal-comentarios')">✕</button>
+    <div class="modal-title" id="com-empresa-nombre">Comentarios</div>
+    <p class="modal-sub" id="com-empresa-sector"></p>
+    <div class="comentario-list" id="comentarios-lista"></div>
+    <button class="btn-secondary" style="width:100%;" onclick="cerrarModal('modal-comentarios')">Cerrar</button>
+  </div>
+</div>
+
+<div class="toast-container" id="toast-container"></div>
+
+<script src="js/main.js"></script>
 </body>
-</html> 
+</html>
