@@ -1,309 +1,111 @@
-# Crónica Empresarial - Plataforma de Denuncias Laborales
+<div align="center">
 
-> **Una plataforma moderna y segura para denunciar situaciones laborales injustas de forma anónima en República Dominicana.**
+# Crónica Empresarial
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)](https://firebase.google.com/)
-[![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=flat&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+**Canal anónimo de denuncias laborales para la República Dominicana**
 
-## Tabla de Contenidos
+Para empleados y empleadores. Sin nombre, sin cédula, sin correo.
 
-- [Características](#-características)
-- [Tecnologías](#-tecnologías-utilizadas)
-- [Instalación](#-instalación)
-- [Configuración](#-configuración-de-firebase)
-- [Uso](#-uso)
-- [Estructura del Proyecto](#-estructura-del-proyecto)
-- [Contribuir](#-contribuir)
-- [Licencia](#-licencia)
-- [Contacto](#-contacto)
+[**Ver la demo en vivo →**](https://c4ndido.github.io/denuncias-laborales/)
 
-## Características
+![Estado](https://img.shields.io/badge/estado-demo%20frontend-f0a500)
+![HTML](https://img.shields.io/badge/HTML-E34F26?logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
+![Licencia MIT](https://img.shields.io/badge/licencia-MIT-0a3a8c)
 
-### Seguridad y Privacidad
-- **Denuncias 100% anónimas** - Tu identidad está completamente protegida
-- **Encriptación de datos** - Toda la información está segura
-- **Sin registro requerido** - Denuncia sin crear cuentas
+![Portada de Crónica Empresarial](docs/captura-inicio.png)
 
-### Funcionalidades Principales
-- **Formularios duales** - Para empleados y empresas
-- **Ranking de empresas** - Sistema de votación y calificación
-- **Búsqueda avanzada** - Filtros por sector, ubicación, fecha
-- **Diseño responsivo** - Funciona en todos los dispositivos
-- **Notificaciones en tiempo real** - Actualizaciones instantáneas
-- **Panel de moderación** - Control de calidad de contenido
+</div>
 
-### Experiencia de Usuario
-- **Diseño moderno** - Interfaz atractiva y fácil de usar
-- **Carga rápida** - Optimizado para rendimiento
-- **Accesibilidad** - Cumple con estándares WCAG
-- **Estadísticas** - Análisis de tendencias laborales
+> [!WARNING]
+> **Esta es una versión de demostración.** Todavía no hay servidor: los datos se guardan solo en el navegador de cada visitante y las denuncias no llegan a nadie. No envíes denuncias reales hasta que el backend esté listo.
 
-## Tecnologías Utilizadas
+## ¿Qué es?
 
-### Frontend
-- **HTML5** - Estructura semántica
-- **CSS3** - Estilos modernos con variables CSS
-- **JavaScript ES6+** - Lógica interactiva
-- **Bootstrap 5** - Framework CSS responsivo
-- **Font Awesome** - Iconografía
+Crónica Empresarial permite reportar situaciones laborales injustas sin revelar la identidad de quien denuncia. Al enviar una denuncia, la persona recibe un **número de expediente** aleatorio con el que puede consultar el estado de su caso más adelante. Así funcionan los canales de denuncia profesionales.
 
-### Backend
-- **Firebase Authentication** - Gestión de usuarios (opcional)
-- **Cloud Firestore** - Base de datos NoSQL
-- **Firebase Storage** - Almacenamiento de archivos
-- **Firebase Hosting** - Hosting web
+También incluye un **ranking público de empresas** con valoraciones anónimas de 1 a 5 estrellas.
 
-### Herramientas de Desarrollo
-- **Git** - Control de versiones
-- **GitHub** - Repositorio y colaboración
-- **VS Code** - Editor recomendado
+## Funcionalidades
 
-## Instalación
+| | Estado |
+|---|---|
+| Formulario de denuncia en 4 pasos (empleado o empleador) | ✅ |
+| Las 32 provincias y categorías basadas en el Código de Trabajo (Ley 16-92) | ✅ |
+| Número de expediente y página para consultar el caso | ✅ |
+| Ranking de empresas con búsqueda, filtro por sector y distribución de votos | ✅ |
+| Preguntas frecuentes y enlaces al Ministerio de Trabajo y la TSS | ✅ |
+| Diseño adaptado a celular y modo oscuro automático | ✅ |
+| Backend con base de datos (Flask + SQLite) | 🚧 En desarrollo |
+| Panel de moderación con login | 🚧 Planificado |
+| Cifrado de denuncias en el servidor | 🚧 Planificado |
 
-### Prerrequisitos
-- Navegador web moderno (Chrome, Firefox, Safari, Edge)
-- Conexión a internet
-- Cuenta de Firebase (para configuración completa)
+## Seguridad y privacidad
 
-### Instalación Local
+El proyecto se construye pensando primero en proteger a quien denuncia.
 
-1. **Clona el repositorio**
-   ```bash
-   git clone https://github.com/C4ndido/denuncias-laborales.git
-   cd denuncias-laborales
-   ```
+- **Protección contra XSS:** todo el texto que escriben los usuarios se escapa antes de mostrarse (función `esc()` en `js/main.js`). Un nombre de empresa como `<img src=x onerror=alert(1)>` se muestra como texto y no se ejecuta.
+- **Números de expediente impredecibles:** se generan con `crypto.getRandomValues()` (60 bits aleatorios), no con `Math.random()`, que es predecible. El alfabeto omite caracteres confusos como `0/O` y `1/I`.
+- **El número nunca va en la URL**, para que no quede guardado en el historial del navegador.
+- **Ninguna petición a terceros:** las fuentes están alojadas en el propio proyecto (`fonts/`), sin Google Fonts ni CDNs, así que la IP del visitante no se comparte con nadie. Además se usa `referrer: no-referrer`.
+- **Aviso sobre metadatos:** el formulario advierte que las fotos pueden contener la ubicación GPS del teléfono.
+- **Moderación:** los comentarios nuevos del ranking quedan pendientes y no se publican automáticamente.
 
-2. **Abre el proyecto**
-   ```bash
-   # Opción 1: Abrir directamente
-   open index.html
-   
-   # Opción 2: Usar un servidor local (recomendado)
-   python -m http.server 8000
-   # Luego visita http://localhost:8000
-   ```
+## Capturas
 
-3. **¡Listo!** 🎉
-   La aplicación debería estar funcionando en tu navegador.
+![Ranking de empresas](docs/captura-ranking.png)
 
-## Configuración de Firebase
+## Probarlo en tu computadora
 
-### 1. Crear Proyecto Firebase
-1. Ve a [Firebase Console](https://console.firebase.google.com/)
-2. Haz clic en "Crear un proyecto"
-3. Sigue el asistente de configuración
-
-### 2. Configurar Servicios
-```javascript
-// Habilita estos servicios en Firebase Console:
-- Authentication (opcional)
-- Cloud Firestore
-- Storage
-- Hosting (opcional)
-```
-
-### 3. Obtener Credenciales
-1. Ve a Configuración del proyecto > General
-2. En "Tus aplicaciones" > "SDK setup and configuration"
-3. Copia la configuración
-
-### 4. Configurar Credenciales
-Edita `js/firebase-config.js`:
-
-```javascript
-// js/firebase-config.js
-const firebaseConfig = {
-  apiKey: "tu-api-key",
-  authDomain: "tu-proyecto.firebaseapp.com",
-  projectId: "tu-proyecto-id",
-  storageBucket: "tu-proyecto.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "tu-app-id"
-};
-
-// Inicializar Firebase
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const storage = firebase.storage();
-```
-
-## Uso
-
-### Para Empleados
-1. **Accede** a la plataforma
-2. **Haz clic** en "Denuncia como Empleado"
-3. **Completa** el formulario con los detalles
-4. **Envía** tu denuncia de forma anónima
-
-### Para Empresas
-1. **Accede** a la plataforma
-2. **Haz clic** en "Denuncia como Empresa"
-3. **Proporciona** información de tu empresa
-4. **Describe** la situación a reportar
-
-### Funcionalidades Adicionales
-- **Buscar denuncias** usando los filtros
-- **Votar por empresas** en el ranking
-- **Ver estadísticas** de denuncias
-- **Compartir** en redes sociales
-
-## Estructura del Proyecto
+No necesita instalar nada más que Python, que se usa como servidor local.
 
 ```bash
-denuncias-laborales/
-├── index.html              # Página principal
-├── css/
-│   └── styles.css          # Estilos personalizados
-├── js/
-│   ├── main.js             # Lógica principal
-│   └── firebase-config.js  # Configuración Firebase
-├── README.md               # Documentación
-├── .gitignore              # Archivos ignorados por Git
-└── LICENSE                 # Licencia MIT
+git clone https://github.com/C4ndido/denuncias-laborales.git
+cd denuncias-laborales
+python3 -m http.server 8000
 ```
 
-### Archivos Principales
+Luego abre <http://localhost:8000> en el navegador.
 
-- **`index.html`** - Estructura HTML principal con componentes Bootstrap
-- **`css/styles.css`** - Estilos CSS personalizados con variables modernas
-- **`js/main.js`** - Funcionalidad JavaScript para interacciones
-- **`js/firebase-config.js`** - Configuración y conexión con Firebase
+## Estructura
+
+```
+denuncias-laborales/
+├── index.html        # Todas las vistas: inicio, denuncia, consulta, ranking y ayuda
+├── css/
+│   ├── styles.css    # Estilos y tema claro/oscuro
+│   └── fonts.css     # Declaración de las fuentes locales
+├── fonts/            # Big Shoulders Display, Public Sans e IBM Plex Mono (licencia OFL)
+├── js/
+│   └── main.js       # Navegación, formulario, ranking y almacenamiento demo
+└── docs/             # Capturas para este README
+```
+
+## Hoja de ruta
+
+- [x] Rediseño completo del frontend
+- [x] Corrección de XSS y del envío del formulario de empresas
+- [x] Publicación de la demo en GitHub Pages
+- [ ] Backend en Flask con SQLite
+- [ ] Panel de moderación con autenticación en dos pasos
+- [ ] Cifrado de denuncias y eliminación de metadatos de archivos
+- [ ] Cabeceras de seguridad (CSP, HSTS) y límite de intentos
+- [ ] Términos de uso y política de privacidad (Ley 172-13)
+- [ ] Pentest propio documentado
+
+## Aviso legal
+
+Crónica Empresarial es un proyecto comunitario y **no es un organismo oficial**. No reemplaza una denuncia formal. Para reclamar derechos laborales, acude al [Ministerio de Trabajo](https://mt.gob.do) o a un abogado laboral.
 
 ## Contribuir
 
-¡Las contribuciones son bienvenidas! Aquí te explicamos cómo puedes ayudar:
+Las sugerencias y reportes de errores son bienvenidos en [Issues](https://github.com/C4ndido/denuncias-laborales/issues). Si quieres aportar código, crea una rama, haz tus cambios y abre un Pull Request.
 
-### Reportar Bugs
-1. Busca si el issue ya existe
-2. Crea un nuevo issue con detalles
-3. Incluye pasos para reproducir el problema
+## Autor
 
-### Sugerir Mejoras
-1. Abre un issue con la etiqueta "enhancement"
-2. Describe la funcionalidad propuesta
-3. Explica por qué sería útil
-
-### Contribuir Código
-1. **Fork** el repositorio
-2. **Crea** una rama para tu feature
-   ```bash
-   git checkout -b feature/nueva-funcionalidad
-   ```
-3. **Realiza** tus cambios
-4. **Commit** con mensajes descriptivos
-   ```bash
-   git commit -m "feat: añadir nueva funcionalidad X"
-   ```
-5. **Push** a tu rama
-   ```bash
-   git push origin feature/nueva-funcionalidad
-   ```
-6. **Abre** un Pull Request
-
-### Guías de Contribución
-- Sigue las convenciones de código existentes
-- Añade comentarios para código complejo
-- Prueba tus cambios antes de enviar
-- Actualiza la documentación si es necesario
-
-## Personalización
-
-### Colores y Temas
-Edita las variables CSS en `css/styles.css`:
-
-```css
-:root {
-  --primary-color: #667eea;
-  --secondary-color: #764ba2;
-  --accent-color: #ff6b6b;
-  /* Personaliza más colores... */
-}
-```
-
-### Agregar Nuevas Funcionalidades
-1. Modifica `index.html` para la estructura
-2. Añade estilos en `css/styles.css`
-3. Implementa lógica en `js/main.js`
-4. Actualiza Firebase rules si es necesario
-
-## Despliegue
-
-### Firebase Hosting
-```bash
-# Instalar Firebase CLI
-npm install -g firebase-tools
-
-# Inicializar proyecto
-firebase init hosting
-
-# Desplegar
-firebase deploy
-```
-
-### Otros Servicios
-- **Netlify** - Drag & drop o conecta con GitHub
-- **Vercel** - Importa desde GitHub
-- **GitHub Pages** - Habilita en configuración del repo
-
-## Roadmap
-
-### Próximas Funcionalidades
-- [ ] Sistema de autenticación opcional
-- [ ] API REST para integraciones
-- [ ] Dashboard de analytics
-- [ ] Notificaciones push
-- [ ] Modo offline
-- [ ] Exportar reportes PDF
-- [ ] Integración con redes sociales
-- [ ] Chatbot de ayuda
-
-### Mejoras Planificadas
-- [ ] Tests automatizados
-- [ ] PWA (Progressive Web App)
-- [ ] Internacionalización (i18n)
-- [ ] Tema oscuro/claro
-- [ ] Optimización SEO
+Desarrollado por [@C4ndido](https://github.com/C4ndido), estudiante de ciberseguridad.
 
 ## Licencia
 
-Este proyecto está bajo la **Licencia MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
-
-```bash
-MIT License
-
-Copyright (c) 2025 Crónica Empresarial
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software...
-```
-
-## Contacto
-
-### Desarrollador
-- **GitHub**: [@C4ndido](https://github.com/C4ndido)
-- **Email**: deivros17@gmail.com
-
-### Proyecto
-- **Repositorio**: [denuncias-laborales](https://github.com/C4ndido/denuncias-laborales)
-- **Issues**: [Reportar problemas](https://github.com/C4ndido/denuncias-laborales/issues)
-- **Discussions**: [Discusiones](https://github.com/C4ndido/denuncias-laborales/discussions)
-
-### Comunidad
-- **Discord**: [Únete a nuestra comunidad](# - próximamente)
-- **Twitter**: [@CronicaEmpresarial](# - próximamente)
-
----
-
-<div align="center">
-
-**⭐ Si este proyecto te ha sido útil, ¡no olvides darle una estrella! ⭐**
-
-**Hecho con ❤️ para mejorar las condiciones laborales en República Dominicana**
-
-[⬆️ Volver arriba](#-crónica-empresarial---plataforma-de-denuncias-laborales)
-
-</div>
+Distribuido bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE).
