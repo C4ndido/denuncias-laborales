@@ -2,331 +2,522 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Crect width=%2224%22 height=%2224%22 fill=%22%230A3A8C%22/%3E%3Crect x=%2214%22 y=%2214%22 width=%2210%22 height=%2210%22 fill=%22%23D0103A%22/%3E%3C/svg%3E">
 <title>Crónica Empresarial — Denuncias Laborales RD</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="Canal anónimo de denuncias laborales en República Dominicana para empleados y empleadores.">
+<link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-<header>
-  <div class="header-top">
-    <div class="logo-block">
-      <h1>Crónica Empresarial</h1>
-      <span>Plataforma de Denuncias Laborales · RD</span>
-    </div>
-    <div class="header-badge">100% Anónimo</div>
-  </div>
-  <nav>
-    <button class="active" onclick="showSection('inicio')">Inicio</button>
-    <button onclick="showSection('denuncia')">Hacer Denuncia</button>
-    <button onclick="showSection('ranking')">Ranking de Empresas</button>
-  </nav>
-</header>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
 
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow">República Dominicana · Protección Laboral</div>
-    <h2>Tu voz importa.<br>Tu identidad, protegida.</h2>
-    <p>Denuncia situaciones laborales injustas y consulta el ranking de empresas evaluado por trabajadores de la RD. Sin registro, sin datos personales.</p>
-    <div class="hero-stats">
-      <div class="stat">
-        <span class="stat-num" id="stat-denuncias">0</span>
-        <span class="stat-label">Denuncias enviadas</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num" id="stat-empresas">0</span>
-        <span class="stat-label">Empresas evaluadas</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num" id="stat-votos">0</span>
-        <span class="stat-label">Votos emitidos</span>
-      </div>
-    </div>
-  </div>
+<div class="demo-banner" role="note">
+  <span class="demo-tag">Demo</span>
+  Los datos se guardan solo en este navegador. No envíes denuncias reales todavía.
 </div>
 
-<main>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#inicio" class="brand" aria-label="Crónica Empresarial, inicio">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Crónica<span>Empresarial</span></span>
+    </a>
 
-  <!-- INICIO -->
-  <div id="section-inicio" class="section active">
-    <h2 class="section-title">¿Qué puedes hacer aquí?</h2>
-    <p class="section-sub">Herramientas anónimas para empleados que buscan justicia y transparencia.</p>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Menú</button>
 
-    <div class="home-cards">
-      <div class="home-card" onclick="showSection('denuncia')">
-        <div class="home-card-icon">📋</div>
-        <div class="home-card-title">Hacer una Denuncia</div>
-        <p class="home-card-desc">Reporta situaciones injustas como empleado o empresa. Sin registro, sin datos personales.</p>
-      </div>
-      <div class="home-card" onclick="showSection('ranking')">
-        <div class="home-card-icon">⭐</div>
-        <div class="home-card-title">Ranking de Empresas</div>
-        <p class="home-card-desc">Consulta y vota empresas. La comunidad propone y califica con estrellas del 1 al 5.</p>
-      </div>
-      <div class="home-card" onclick="abrirProponerEmpresa()">
-        <div class="home-card-icon">🏢</div>
-        <div class="home-card-title">Proponer una Empresa</div>
-        <p class="home-card-desc">¿No encuentras tu empresa? Proponla al ranking para que otros empleados la evalúen.</p>
+    <nav id="main-nav" class="main-nav" aria-label="Principal">
+      <a href="#inicio" data-route="inicio">Inicio</a>
+      <a href="#ranking" data-route="ranking">Ranking</a>
+      <a href="#consultar" data-route="consultar">Consultar expediente</a>
+      <a href="#ayuda" data-route="ayuda">Ayuda</a>
+      <a href="#denunciar" data-route="denunciar" class="nav-cta">Denunciar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="contenido">
+
+  <!-- ═════════════ INICIO ═════════════ -->
+  <section id="view-inicio" class="view" data-view="inicio">
+
+    <div class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">República Dominicana · Ley 16-92</p>
+          <h1 class="poster">
+            <span>Si pasa en</span>
+            <span>tu trabajo,</span>
+            <span>denúncialo.</span>
+            <mark>Sin dar tu nombre.</mark>
+          </h1>
+          <p class="hero-lead">Un canal para empleados y empleadores. No pedimos nombre, cédula ni correo. Al enviar recibes un número de expediente para seguir tu caso.</p>
+          <div class="hero-actions">
+            <a href="#denunciar" class="btn btn-red btn-lg">Hacer una denuncia</a>
+            <a href="#ayuda" class="btn btn-line-light btn-lg">Cómo protegemos tu identidad</a>
+          </div>
+        </div>
+
+        <figure class="hero-ticket" aria-label="Ejemplo de comprobante">
+          <div class="ticket">
+            <div class="ticket-stub">
+              <span>Comprobante</span>
+              <span>de denuncia</span>
+            </div>
+            <div class="ticket-body">
+              <div class="ticket-row">
+                <span class="t-label">Expediente</span>
+                <span class="t-code">7KQM-4XPA-29HT</span>
+              </div>
+              <div class="ticket-grid">
+                <div><span class="t-label">Tipo</span><span>Horas extra no pagadas</span></div>
+                <div><span class="t-label">Provincia</span><span>Santiago</span></div>
+                <div><span class="t-label">Estado</span><span class="t-state">En revisión</span></div>
+                <div><span class="t-label">Remitente</span><span>Anónimo</span></div>
+              </div>
+            </div>
+            <span class="ticket-stamp" aria-hidden="true">Ejemplo</span>
+          </div>
+          <figcaption>Así se ve el comprobante que recibes. Solo tú tienes el número.</figcaption>
+        </figure>
       </div>
     </div>
 
-    <hr class="section-divider">
-    <h3 style="font-family:'Playfair Display',serif; font-size:1.3rem; margin-bottom:20px;">Empresas más votadas</h3>
-    <div id="inicio-ranking" class="empresa-grid"></div>
-  </div>
-
-  <!-- DENUNCIA -->
-  <div id="section-denuncia" class="section">
-    <h2 class="section-title">Hacer una Denuncia</h2>
-    <p class="section-sub">Tu identidad nunca será revelada. No se almacenan datos personales.</p>
-
-    <div class="form-card">
-      <div class="anon-badge">Tu denuncia es completamente anónima. No se requiere registro ni identificación.</div>
-
-      <div class="form-tabs">
-        <button class="form-tab active" onclick="switchTab('empleado', this)">Soy Empleado</button>
-        <button class="form-tab" onclick="switchTab('empresa-den', this)">Soy Empresa</button>
-      </div>
-
-      <form onsubmit="enviarDenuncia(event)" id="form-denuncia">
-
-        <div id="tab-empleado">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Nombre de la empresa</label>
-              <input type="text" id="emp-empresa" placeholder="Ej: Empresa XYZ, S.R.L." required>
-            </div>
-            <div class="form-group">
-              <label>Sector</label>
-              <select id="emp-sector" required>
-                <option value="">Selecciona...</option>
-                <option>Banca y Finanzas</option><option>Comercio al por menor</option>
-                <option>Construcción</option><option>Educación</option>
-                <option>Manufactura</option><option>Salud</option>
-                <option>Tecnología</option><option>Telecomunicaciones</option>
-                <option>Turismo y Hotelería</option><option>Transporte</option><option>Otro</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label>Provincia</label>
-              <select id="emp-provincia" required>
-                <option value="">Selecciona...</option>
-                <option>Distrito Nacional</option><option>Santo Domingo</option>
-                <option>Santiago</option><option>La Vega</option>
-                <option>San Pedro de Macorís</option><option>La Romana</option>
-                <option>Puerto Plata</option><option>San Cristóbal</option><option>Otra</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Tipo de irregularidad</label>
-              <select id="emp-tipo" required>
-                <option value="">Selecciona...</option>
-                <option>Salarios no pagados o retrasados</option>
-                <option>Horas extras no remuneradas</option>
-                <option>Acoso laboral o mobbing</option>
-                <option>Discriminación</option>
-                <option>Despido injustificado</option>
-                <option>Condiciones inseguras</option>
-                <option>Violación de contrato</option>
-                <option>No pago de prestaciones</option>
-                <option>Otro</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Descripción detallada</label>
-            <textarea id="emp-descripcion" placeholder="Describe la situación. No incluyas datos que te puedan identificar." required></textarea>
-          </div>
-          <div class="form-group">
-            <label>Fecha aproximada del incidente</label>
-            <input type="month" id="emp-fecha">
-          </div>
+    <div class="lookup-band">
+      <form class="wrap lookup" data-code-form>
+        <label for="hero-code">¿Ya denunciaste? Consulta tu expediente</label>
+        <div class="lookup-row">
+          <input id="hero-code" name="codigo" class="code-input" placeholder="XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false" required>
+          <button class="btn btn-ink" type="submit">Consultar</button>
         </div>
-
-        <div id="tab-empresa-den" style="display:none;">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Nombre de tu empresa</label>
-              <input type="text" id="ent-empresa" placeholder="Nombre de tu organización">
-            </div>
-            <div class="form-group">
-              <label>Sector</label>
-              <select id="ent-sector">
-                <option value="">Selecciona...</option>
-                <option>Banca y Finanzas</option><option>Comercio al por menor</option>
-                <option>Construcción</option><option>Educación</option>
-                <option>Manufactura</option><option>Salud</option>
-                <option>Tecnología</option><option>Telecomunicaciones</option>
-                <option>Turismo y Hotelería</option><option>Transporte</option><option>Otro</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Situación a reportar</label>
-            <select id="ent-tipo">
-              <option value="">Selecciona...</option>
-              <option>Empleado con conducta inapropiada</option>
-              <option>Fraude interno</option>
-              <option>Conflicto con proveedor</option>
-              <option>Irregularidad regulatoria</option>
-              <option>Otro</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Descripción del caso</label>
-            <textarea id="ent-descripcion" placeholder="Describe la situación de forma objetiva."></textarea>
-          </div>
-        </div>
-
-        <button type="submit" class="btn-primary">Enviar Denuncia Anónima</button>
       </form>
     </div>
-  </div>
 
-  <!-- RANKING -->
-  <div id="section-ranking" class="section">
-    <div class="ranking-header">
-      <div>
-        <h2 class="section-title">Ranking de Empresas</h2>
-        <p class="section-sub">Evaluado por empleados. Propuesto por la comunidad.</p>
+    <div class="wrap">
+      <section class="band">
+        <header class="band-head">
+          <h2 class="section-title">Qué puedes denunciar</h2>
+          <p class="band-note">Situaciones previstas en el Código de Trabajo y en la Ley de Seguridad Social.</p>
+        </header>
+        <div class="sides">
+          <article class="side">
+            <h3>Si eres empleado</h3>
+            <ul class="issue-list">
+              <li>Salario no pagado o retrasado</li>
+              <li>Horas extra sin pagar</li>
+              <li>Prestaciones laborales no pagadas</li>
+              <li>Salario de Navidad o vacaciones no pagados</li>
+              <li>No inscripción en la TSS</li>
+              <li>Acoso laboral o sexual</li>
+              <li>Despido injustificado</li>
+            </ul>
+            <a href="#denunciar" class="btn btn-blue" data-start-role="empleado">Denunciar como empleado</a>
+          </article>
+          <article class="side">
+            <h3>Si eres empleador</h3>
+            <ul class="issue-list">
+              <li>Abandono de trabajo</li>
+              <li>Robo o hurto</li>
+              <li>Fraude o falsificación</li>
+              <li>Filtración de información confidencial</li>
+              <li>Violencia o conducta inapropiada</li>
+              <li>Daño a bienes de la empresa</li>
+            </ul>
+            <a href="#denunciar" class="btn btn-blue" data-start-role="empleador">Denunciar como empleador</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="band">
+        <header class="band-head">
+          <h2 class="section-title">Cómo funciona</h2>
+        </header>
+        <ol class="process">
+          <li>
+            <span class="process-n">1</span>
+            <h3>Cuentas qué pasó</h3>
+            <p>Un formulario de cuatro pasos. Toma unos cinco minutos.</p>
+          </li>
+          <li>
+            <span class="process-n">2</span>
+            <h3>Guardas tu expediente</h3>
+            <p>Recibes un número único. No se puede recuperar si lo pierdes.</p>
+          </li>
+          <li>
+            <span class="process-n">3</span>
+            <h3>Un moderador lo revisa</h3>
+            <p>Puede dejarte preguntas sin saber quién eres.</p>
+          </li>
+          <li>
+            <span class="process-n">4</span>
+            <h3>Das seguimiento</h3>
+            <p>Entras con tu número para ver el estado y responder.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="band">
+        <header class="band-head band-head-row">
+          <h2 class="section-title">Ranking de empresas</h2>
+          <a href="#ranking" class="text-link">Ver todas las empresas</a>
+        </header>
+        <div class="figures" aria-label="Cifras de la plataforma">
+          <div><span class="fig-num" id="stat-empresas">0</span><span class="fig-label">empresas</span></div>
+          <div><span class="fig-num" id="stat-votos">0</span><span class="fig-label">valoraciones</span></div>
+          <div><span class="fig-num" id="stat-denuncias">0</span><span class="fig-label">expedientes abiertos</span></div>
+        </div>
+        <div id="inicio-ranking" class="board"></div>
+      </section>
+    </div>
+  </section>
+
+  <!-- ═════════════ DENUNCIAR ═════════════ -->
+  <section id="view-denunciar" class="view" data-view="denunciar" hidden>
+    <div class="page-banner">
+      <div class="wrap">
+        <p class="kicker">Formulario anónimo</p>
+        <h1>Hacer una denuncia</h1>
+        <p>Solo los moderadores leen tu denuncia. Nunca se publica.</p>
       </div>
-      <button class="btn-secondary" onclick="abrirProponerEmpresa()">+ Proponer empresa</button>
     </div>
 
-    <div class="ranking-controls">
-      <div class="search-bar">
-      <input type="text" id="search-input" placeholder="Buscar empresa o sector..." oninput="filtrarEmpresas()">
+    <div class="wrap page">
+      <div class="wizard-layout" id="wizard-layout">
+        <div class="wizard" id="wizard">
+          <ol class="progress" aria-label="Progreso">
+            <li class="active"><span class="p-n">1</span><span class="p-t">Perfil</span></li>
+            <li><span class="p-n">2</span><span class="p-t">Detalles</span></li>
+            <li><span class="p-n">3</span><span class="p-t">Relato</span></li>
+            <li><span class="p-n">4</span><span class="p-t">Revisar</span></li>
+          </ol>
+
+          <form id="form-denuncia" novalidate>
+            <fieldset class="step" data-step="1">
+              <legend>¿Desde qué lado denuncias?</legend>
+              <div class="choice-grid">
+                <label class="choice">
+                  <input type="radio" name="rol" value="empleado" required>
+                  <span class="choice-body">
+                    <strong>Soy empleado</strong>
+                    <small>Denuncio a mi empleador o a un superior.</small>
+                  </span>
+                </label>
+                <label class="choice">
+                  <input type="radio" name="rol" value="empleador" required>
+                  <span class="choice-body">
+                    <strong>Soy empleador</strong>
+                    <small>Denuncio la conducta de un trabajador.</small>
+                  </span>
+                </label>
+              </div>
+              <p class="field-error" data-error="rol" hidden>Elige una opción para continuar.</p>
+            </fieldset>
+
+            <fieldset class="step" data-step="2" hidden>
+              <legend>Detalles del caso</legend>
+              <div class="form-row">
+                <div class="field">
+                  <label for="f-empresa">Empresa donde trabajas</label>
+                  <input id="f-empresa" name="empresa" required maxlength="120" placeholder="Ej: Empresa XYZ, S.R.L.">
+                </div>
+                <div class="field">
+                  <label for="f-sector">Sector</label>
+                  <select id="f-sector" name="sector" required data-options="sectores"></select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="f-provincia">Provincia</label>
+                  <select id="f-provincia" name="provincia" required data-options="provincias"></select>
+                </div>
+                <div class="field">
+                  <label for="f-tipo">Tipo de situación</label>
+                  <select id="f-tipo" name="tipo" required></select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="f-fecha">¿Cuándo ocurrió? <span class="optional">Opcional</span></label>
+                  <input id="f-fecha" name="fecha" type="month">
+                </div>
+                <div class="field">
+                  <label for="f-continua">¿Sigue ocurriendo?</label>
+                  <select id="f-continua" name="continua" required>
+                    <option value="">Selecciona…</option>
+                    <option>Sí, sigue ocurriendo</option>
+                    <option>No, ya terminó</option>
+                    <option>No estoy seguro</option>
+                  </select>
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="step" data-step="3" hidden>
+              <legend>Cuéntanos qué pasó</legend>
+              <div class="field">
+                <label for="f-descripcion">Descripción</label>
+                <textarea id="f-descripcion" name="descripcion" required minlength="30" maxlength="5000" rows="9"
+                  placeholder="¿Qué pasó? ¿Cuándo y dónde? ¿Quiénes participaron (cargos, no nombres)? ¿Hay testigos o pruebas?"></textarea>
+                <div class="field-foot">
+                  <span>Mínimo 30 caracteres. No escribas datos que te identifiquen.</span>
+                  <span class="counter" id="desc-counter">0 / 5000</span>
+                </div>
+              </div>
+              <div class="field">
+                <label for="f-archivos">Pruebas <span class="optional">Opcional</span></label>
+                <label class="dropzone" for="f-archivos">
+                  <input id="f-archivos" name="archivos" type="file" multiple accept="image/*,.pdf">
+                  <span><strong>Elige archivos</strong> o arrástralos aquí</span>
+                  <small>Imágenes o PDF. En la demo no se suben.</small>
+                </label>
+                <ul class="file-list" id="file-list"></ul>
+                <p class="notice">Las fotos guardan la ubicación GPS y el modelo de tu teléfono. Súbelas como captura de pantalla para borrar esos datos.</p>
+              </div>
+            </fieldset>
+
+            <fieldset class="step" data-step="4" hidden>
+              <legend>Revisa tu denuncia</legend>
+              <dl class="summary" id="summary"></dl>
+              <label class="check-line">
+                <input type="checkbox" name="veracidad" required>
+                <span>Declaro que la información es verdadera según mi conocimiento.</span>
+              </label>
+              <p class="field-error" data-error="veracidad" hidden>Marca la casilla para enviar.</p>
+            </fieldset>
+
+            <div class="wizard-nav">
+              <button type="button" class="btn btn-line" data-prev hidden>Atrás</button>
+              <button type="button" class="btn btn-blue" data-next>Continuar</button>
+              <button type="submit" class="btn btn-red" data-submit hidden>Enviar denuncia</button>
+            </div>
+          </form>
+        </div>
+
+        <aside class="tips">
+          <h2>Antes de escribir</h2>
+          <ol>
+            <li>No uses la computadora, el Wi-Fi ni el teléfono del trabajo.</li>
+            <li>Abre una ventana de incógnito y ciérrala al terminar.</li>
+            <li>Nombra a las personas por su cargo, no por su nombre.</li>
+            <li>Evita detalles que solo tú podrías saber.</li>
+          </ol>
+        </aside>
+      </div>
+
+      <div class="done" id="denuncia-ok" hidden tabindex="-1">
+        <h2>Denuncia recibida</h2>
+        <p>Guarda este número. Es la única forma de volver a tu caso y no podemos recuperarlo, porque no sabemos quién eres.</p>
+        <div class="ticket ticket-lg">
+          <div class="ticket-stub">
+            <span>Comprobante</span>
+            <span>de denuncia</span>
+          </div>
+          <div class="ticket-body">
+            <div class="ticket-row">
+              <span class="t-label">Expediente</span>
+              <span class="t-code" id="codigo-generado">—</span>
+            </div>
+            <div class="ticket-grid">
+              <div><span class="t-label">Tipo</span><span id="ok-tipo">—</span></div>
+              <div><span class="t-label">Fecha</span><span id="ok-fecha">—</span></div>
+              <div><span class="t-label">Estado</span><span class="t-state">Recibida</span></div>
+              <div><span class="t-label">Remitente</span><span>Anónimo</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="done-actions">
+          <button class="btn btn-blue" type="button" id="btn-copiar">Copiar número</button>
+          <a href="#consultar" class="btn btn-line" id="btn-ver-caso">Ver mi expediente</a>
+          <button class="btn btn-plain" type="button" id="btn-nueva">Hacer otra denuncia</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════ CONSULTAR ═════════════ -->
+  <section id="view-consultar" class="view" data-view="consultar" hidden>
+    <div class="page-banner">
+      <div class="wrap">
+        <p class="kicker">Seguimiento</p>
+        <h1>Consultar expediente</h1>
+        <p>Escribe el número que recibiste al enviar tu denuncia.</p>
+      </div>
     </div>
 
-    <div class="ranking-filters">
-      <button class="filter-btn active" onclick="setFiltro('todos', this)">Todos</button>
-      <button class="filter-btn" onclick="setFiltro('mejor', this)">Mejor calificadas</button>
-      <button class="filter-btn" onclick="setFiltro('peor', this)">Peor calificadas</button>
-      <button class="filter-btn" onclick="setFiltro('mas-votadas', this)">Más votadas</button>
+    <div class="wrap page page-narrow">
+      <form class="lookup lookup-page" data-code-form>
+        <label for="consulta-code">Número de expediente</label>
+        <div class="lookup-row">
+          <input id="consulta-code" name="codigo" class="code-input" placeholder="XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false" required>
+          <button class="btn btn-blue" type="submit">Consultar</button>
+        </div>
+      </form>
+      <div id="consulta-resultado" aria-live="polite"></div>
     </div>
+  </section>
+
+  <!-- ═════════════ RANKING ═════════════ -->
+  <section id="view-ranking" class="view" data-view="ranking" hidden>
+    <div class="page-banner">
+      <div class="wrap banner-row">
+        <div>
+          <p class="kicker">Valoraciones anónimas</p>
+          <h1>Ranking de empresas</h1>
+          <p>Los comentarios se revisan antes de publicarse.</p>
+        </div>
+        <button class="btn btn-red" type="button" data-open="modal-proponer">Agregar empresa</button>
+      </div>
     </div>
 
-    <hr class="section-divider" style="margin:20px 0;">
-    <div id="ranking-grid" class="empresa-grid"></div>
-  </div>
+    <div class="wrap page">
+      <div class="toolbar">
+        <div class="field">
+          <label for="search-input">Buscar</label>
+          <input type="search" id="search-input" placeholder="Nombre o sector">
+        </div>
+        <div class="field">
+          <label for="filtro-sector">Sector</label>
+          <select id="filtro-sector" data-options="sectores" data-placeholder="Todos los sectores"></select>
+        </div>
+        <div class="field">
+          <span class="label" id="orden-label">Ordenar por</span>
+          <div class="segmented" role="group" aria-labelledby="orden-label">
+            <button type="button" class="active" data-orden="mejor">Mejor valoradas</button>
+            <button type="button" data-orden="peor">Peor valoradas</button>
+            <button type="button" data-orden="votos">Más valoraciones</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="ranking-grid" class="board"></div>
+    </div>
+  </section>
+
+  <!-- ═════════════ AYUDA ═════════════ -->
+  <section id="view-ayuda" class="view" data-view="ayuda" hidden>
+    <div class="page-banner">
+      <div class="wrap">
+        <p class="kicker">Ayuda</p>
+        <h1>Preguntas frecuentes</h1>
+      </div>
+    </div>
+
+    <div class="wrap page page-narrow">
+      <div class="faq">
+        <details open>
+          <summary>¿De verdad es anónimo?</summary>
+          <p>No pedimos nombre, cédula, correo ni teléfono. Tu caso se identifica solo con un número aleatorio. Las fuentes de esta página están en nuestro propio servidor, así que tu visita no se comparte con Google ni con otros servicios. Aun así, lo que escribas en la descripción puede delatarte: revisa el texto antes de enviarlo.</p>
+        </details>
+        <details>
+          <summary>¿Mi denuncia se publica?</summary>
+          <p>No. Las denuncias solo las leen los moderadores. Lo único público es el ranking de empresas, con las valoraciones y los comentarios ya aprobados.</p>
+        </details>
+        <details>
+          <summary>Perdí mi número de expediente</summary>
+          <p>No se puede recuperar porque no sabemos quién lo creó. Puedes enviar una nueva denuncia y mencionar que continúa un caso anterior.</p>
+        </details>
+        <details>
+          <summary>¿Esto reemplaza una denuncia ante el Ministerio de Trabajo?</summary>
+          <p>No. Esta plataforma no es un organismo oficial. Para reclamar tus derechos legalmente, acude al Ministerio de Trabajo o a un abogado laboral.</p>
+        </details>
+        <details>
+          <summary>¿Puede denunciar un empleador?</summary>
+          <p>Sí. Las empresas también pueden reportar conductas de trabajadores, como abandono del puesto, robo o filtración de información.</p>
+        </details>
+      </div>
+
+      <section class="band">
+        <h2 class="section-title">Recursos oficiales</h2>
+        <ul class="resources">
+          <li>
+            <a href="https://mt.gob.do" target="_blank" rel="noopener noreferrer">Ministerio de Trabajo</a>
+            <span>Denuncias formales, inspección y mediación laboral.</span>
+          </li>
+          <li>
+            <a href="https://www.tss.gob.do" target="_blank" rel="noopener noreferrer">Tesorería de la Seguridad Social (TSS)</a>
+            <span>Verifica si tu empleador te tiene inscrito.</span>
+          </li>
+          <li>
+            <strong>Código de Trabajo, Ley 16-92</strong>
+            <span>La ley que regula los derechos y deberes laborales en la República Dominicana.</span>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </section>
 
 </main>
 
-<footer class="footer-main py-4 mt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <h5>Crónica Empresarial</h5>
-                <p class="mb-2 text-muted">Foro de denuncias laborales anónimas. Promovemos las mejores prácticas y la transparencia.</p>
-                <p class="small text-muted"><i class="fas fa-shield-alt me-1"></i>Proyecto de código abierto construido con colaboración comunitaria.</p>
-            </div>
-            <div class="col-md-4 text-md-end footer-actions">
-                <a href="https://github.com/C4ndido/denuncias-laborales" target="_blank" class="btn-outline" style="display:inline-flex; align-items:center; gap:8px;">
-                    <svg height="20" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="20" data-view-component="true" class="octicon octicon-mark-github">
-                      <path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.46-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"></path>
-                    </svg>
-                    Colabora en GitHub
-                </a>
-            </div>
-        </div>
-        <hr class="my-3 border-secondary">
-        <div class="text-center text-muted">
-            <small>&copy; 2026 Crónica Empresarial - República Dominicana</small>
-        </div>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="brand-name">Crónica<span>Empresarial</span></span>
+      <p>Proyecto comunitario de código abierto. No es un organismo oficial.</p>
     </div>
+    <a href="https://github.com/C4ndido/denuncias-laborales" target="_blank" rel="noopener noreferrer" class="text-link">Código en GitHub</a>
+  </div>
+  <div class="wrap footer-bottom">© 2026 Crónica Empresarial · República Dominicana</div>
 </footer>
 
-<!-- MODAL: PROPONER EMPRESA -->
-<div class="modal-overlay" id="modal-proponer">
-  <div class="modal">
-    <button class="modal-close" onclick="cerrarModal('modal-proponer')">✕</button>
-    <div class="modal-title">Proponer una Empresa</div>
-    <p class="modal-sub">Cualquier persona puede proponer una empresa al ranking. Tu identidad permanece anónima.</p>
-    <form onsubmit="proponerEmpresa(event)">
-      <div class="form-group">
-        <label>Nombre de la empresa</label>
-        <input type="text" id="prop-nombre" placeholder="Nombre oficial de la empresa" required>
-      </div>
-      <div class="form-group">
-        <label>Sector</label>
-        <select id="prop-sector" required>
-          <option value="">Selecciona...</option>
-          <option>Banca y Finanzas</option><option>Comercio al por menor</option>
-          <option>Construcción</option><option>Educación</option>
-          <option>Manufactura</option><option>Salud</option>
-          <option>Tecnología</option><option>Telecomunicaciones</option>
-          <option>Turismo y Hotelería</option><option>Transporte</option><option>Otro</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Tu calificación inicial (1–5 estrellas)</label>
-        <div class="star-vote-input" id="prop-stars" data-selected="0">
-          <span class="star-input" data-val="1">★</span>
-          <span class="star-input" data-val="2">★</span>
-          <span class="star-input" data-val="3">★</span>
-          <span class="star-input" data-val="4">★</span>
-          <span class="star-input" data-val="5">★</span>
-        </div>
-        <p style="font-size:0.75rem; color:var(--gray); margin-top:6px;" id="prop-stars-label">Selecciona una calificación</p>
-      </div>
-      <div class="form-group">
-        <label>Comentario (opcional)</label>
-        <textarea id="prop-comentario" placeholder="¿Cómo es el ambiente laboral en esta empresa?" style="min-height:80px;"></textarea>
-      </div>
-      <div style="display:flex; gap:10px;">
-        <button type="submit" class="btn-primary" style="width:auto; flex:1;">Proponer al Ranking</button>
-        <button type="button" class="btn-outline" onclick="cerrarModal('modal-proponer')">Cancelar</button>
-      </div>
-    </form>
-  </div>
-</div>
+<!-- ═════════════ MODALES ═════════════ -->
+<dialog id="modal-proponer" class="modal" aria-labelledby="prop-titulo">
+  <form method="dialog" class="modal-x"><button aria-label="Cerrar">✕</button></form>
+  <h2 id="prop-titulo">Agregar empresa</h2>
+  <p class="modal-sub">Agrega una empresa al ranking con tu primera valoración.</p>
+  <form id="form-proponer">
+    <div class="field">
+      <label for="prop-nombre">Nombre de la empresa</label>
+      <input id="prop-nombre" required maxlength="120" placeholder="Nombre oficial">
+    </div>
+    <div class="field">
+      <label for="prop-sector">Sector</label>
+      <select id="prop-sector" required data-options="sectores"></select>
+    </div>
+    <div class="field">
+      <span class="label">Tu valoración</span>
+      <div class="star-input" data-stars="prop"></div>
+    </div>
+    <div class="field">
+      <label for="prop-comentario">Comentario <span class="optional">Opcional</span></label>
+      <textarea id="prop-comentario" maxlength="600" rows="3" placeholder="¿Cómo es trabajar ahí?"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-plain" data-close>Cancelar</button>
+      <button type="submit" class="btn btn-blue">Agregar empresa</button>
+    </div>
+  </form>
+</dialog>
 
-<!-- MODAL: VOTAR -->
-<div class="modal-overlay" id="modal-votar">
-  <div class="modal">
-    <button class="modal-close" onclick="cerrarModal('modal-votar')">✕</button>
-    <div class="modal-title" id="votar-empresa-nombre">Calificar empresa</div>
-    <p class="modal-sub">Tu voto es anónimo y contribuye al ranking comunitario.</p>
-    <form onsubmit="submitVoto(event)">
-      <div class="form-group">
-        <label>Tu calificación (1–5 estrellas)</label>
-        <div class="star-vote-input" id="votar-stars" data-selected="0">
-          <span class="star-input" data-val="1">★</span>
-          <span class="star-input" data-val="2">★</span>
-          <span class="star-input" data-val="3">★</span>
-          <span class="star-input" data-val="4">★</span>
-          <span class="star-input" data-val="5">★</span>
-        </div>
-        <p style="font-size:0.75rem; color:var(--gray); margin-top:6px;" id="votar-stars-label">Selecciona una calificación</p>
-      </div>
-      <div class="form-group">
-        <label>Comentario (opcional)</label>
-        <textarea id="votar-comentario" placeholder="Comparte tu experiencia laboral en esta empresa..." style="min-height:80px;"></textarea>
-      </div>
-      <div style="display:flex; gap:10px;">
-        <button type="submit" class="btn-primary" style="width:auto; flex:1;">Enviar Calificación</button>
-        <button type="button" class="btn-outline" onclick="cerrarModal('modal-votar')">Cancelar</button>
-      </div>
-    </form>
-  </div>
-</div>
+<dialog id="modal-votar" class="modal" aria-labelledby="votar-titulo">
+  <form method="dialog" class="modal-x"><button aria-label="Cerrar">✕</button></form>
+  <h2 id="votar-titulo">Valorar empresa</h2>
+  <p class="modal-sub">Tu valoración es anónima.</p>
+  <form id="form-votar">
+    <div class="field">
+      <span class="label">Tu valoración</span>
+      <div class="star-input" data-stars="votar"></div>
+    </div>
+    <div class="field">
+      <label for="votar-comentario">Comentario <span class="optional">Opcional</span></label>
+      <textarea id="votar-comentario" maxlength="600" rows="3" placeholder="Comparte tu experiencia"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-plain" data-close>Cancelar</button>
+      <button type="submit" class="btn btn-blue">Enviar valoración</button>
+    </div>
+  </form>
+</dialog>
 
-<!-- MODAL: COMENTARIOS -->
-<div class="modal-overlay" id="modal-comentarios">
-  <div class="modal">
-    <button class="modal-close" onclick="cerrarModal('modal-comentarios')">✕</button>
-    <div class="modal-title" id="com-empresa-nombre">Comentarios</div>
-    <p class="modal-sub" id="com-empresa-sector"></p>
-    <div class="comentario-list" id="comentarios-lista"></div>
-    <button class="btn-secondary" style="width:100%;" onclick="cerrarModal('modal-comentarios')">Cerrar</button>
-  </div>
-</div>
+<dialog id="modal-comentarios" class="modal" aria-labelledby="com-titulo">
+  <form method="dialog" class="modal-x"><button aria-label="Cerrar">✕</button></form>
+  <h2 id="com-titulo">Comentarios</h2>
+  <p class="modal-sub" id="com-sector"></p>
+  <div id="com-lista" class="comment-list"></div>
+</dialog>
 
-<div class="toast-container" id="toast-container"></div>
+<div class="toast-container" id="toast-container" aria-live="polite"></div>
 
 <script src="js/main.js"></script>
 </body>
