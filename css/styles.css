@@ -349,6 +349,7 @@ h1, h2, h3 { text-wrap: balance; line-height: 1.1; }
 .optional { font-family: var(--mono); font-weight: 500; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-left: 4px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .step > * + * { margin-top: 20px; }
+.step .share-box + .check-line { margin-top: 24px; }
 @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
 
 input:not([type="radio"]):not([type="checkbox"]):not([type="file"]), select, textarea {
@@ -422,6 +423,25 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
   .summary { grid-template-columns: 1fr; }
   .summary dt { border-bottom: 0; padding-bottom: 0; }
 }
+
+/* ─── Autorización para Instagram ─── */
+.share-box { display: flex; flex-direction: column; gap: 10px; padding: 18px; border: 1.5px dashed var(--muted); border-radius: var(--r); }
+.share-note { font-size: .86rem; color: var(--muted); padding-left: 32px; }
+.share-preview { display: flex; flex-direction: column; gap: 8px; padding-left: 32px; }
+.share-preview .t-label { color: var(--muted); }
+.ig-post {
+  width: min(300px, 100%); aspect-ratio: 1; max-width: 100%;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 6px;
+  padding: 22px; background: #0a3a8c; color: #fff; border-radius: 4px;
+}
+.ig-brand { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: .95rem; letter-spacing: .04em; }
+.ig-kicker { font-family: var(--mono); font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: #c5d3ee; margin-top: auto; }
+.ig-title { font-family: var(--display); font-weight: 900; text-transform: uppercase; font-size: 1.75rem; line-height: .95; text-wrap: balance; }
+.ig-meta { display: flex; flex-wrap: wrap; gap: 4px 16px; margin: 6px 0 0; padding-top: 10px; border-top: 1px solid rgb(255 255 255 / .3); }
+.ig-meta dt { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: #c5d3ee; }
+.ig-meta dd { margin: 0; font-size: .82rem; font-weight: 600; }
+.ig-foot { font-size: .7rem; color: #c5d3ee; }
+@media (max-width: 480px) { .share-note, .share-preview { padding-left: 0; } }
 
 .check-line { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; font-weight: 500; }
 .check-line input { margin-top: 3px; width: 20px; height: 20px; accent-color: var(--blue); flex-shrink: 0; }

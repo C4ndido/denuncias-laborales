@@ -280,6 +280,29 @@
             <fieldset class="step" data-step="4" hidden>
               <legend>Revisa tu denuncia</legend>
               <dl class="summary" id="summary"></dl>
+
+              <div class="share-box">
+                <label class="check-line">
+                  <input type="checkbox" name="publicable" id="f-publicable">
+                  <span>Autorizo que publiquen una versión anónima de mi caso en el Instagram de Crónica Empresarial. <span class="optional">Opcional</span></span>
+                </label>
+                <p class="share-note">Nunca se publica el nombre de la empresa, ni tu descripción original, ni detalles que puedan identificarte. El equipo de moderación redacta un resumen breve.</p>
+                <div class="share-preview" id="share-preview" hidden>
+                  <span class="t-label">Así se vería la publicación</span>
+                  <figure class="ig-post" aria-label="Vista previa de la publicación">
+                    <span class="ig-brand">Crónica Empresarial</span>
+                    <span class="ig-kicker">Caso anónimo</span>
+                    <strong class="ig-title" id="ig-tipo">—</strong>
+                    <dl class="ig-meta">
+                      <div><dt>Sector</dt><dd id="ig-sector">—</dd></div>
+                      <div><dt>Región</dt><dd id="ig-region">—</dd></div>
+                      <div><dt>Fecha</dt><dd id="ig-fecha">—</dd></div>
+                    </dl>
+                    <span class="ig-foot">Resumen redactado por moderación</span>
+                  </figure>
+                </div>
+              </div>
+
               <label class="check-line">
                 <input type="checkbox" name="veracidad" required>
                 <span>Declaro que la información es verdadera según mi conocimiento.</span>
@@ -421,6 +444,10 @@
         <details>
           <summary>¿Esto reemplaza una denuncia ante el Ministerio de Trabajo?</summary>
           <p>No. Esta plataforma no es un organismo oficial. Para reclamar tus derechos legalmente, acude al Ministerio de Trabajo o a un abogado laboral.</p>
+        </details>
+        <details>
+          <summary>¿Publican las denuncias en Instagram?</summary>
+          <p>Solo si quien denuncia lo autoriza al enviar el formulario. La publicación muestra el tipo de situación, el sector y la región (Gran Santo Domingo, Norte, Sur o Este), nunca el nombre de la empresa ni la provincia exacta. El texto lo redacta el equipo de moderación sin detalles que identifiquen a nadie, y no se publica ningún caso sin revisarlo antes.</p>
         </details>
         <details>
           <summary>¿Puede denunciar un empleador?</summary>

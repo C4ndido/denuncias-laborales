@@ -42,6 +42,20 @@ const ESTADOS = [
   { id: 'cerrada',   titulo: 'Cerrada',     texto: 'El caso fue atendido y archivado.' }
 ];
 
+// Regiones para publicaciones: más amplias que la provincia para que el
+// sector + lugar no permita adivinar la empresa en provincias pequeñas.
+const REGIONES = {
+  'Gran Santo Domingo': ['Distrito Nacional', 'Santo Domingo'],
+  'Norte': ['Dajabón', 'Duarte', 'Espaillat', 'Hermanas Mirabal', 'La Vega', 'María Trinidad Sánchez',
+    'Monseñor Nouel', 'Monte Cristi', 'Puerto Plata', 'Samaná', 'Sánchez Ramírez', 'Santiago',
+    'Santiago Rodríguez', 'Valverde'],
+  'Sur': ['Azua', 'Bahoruco', 'Barahona', 'Elías Piña', 'Independencia', 'Pedernales', 'Peravia',
+    'San Cristóbal', 'San José de Ocoa', 'San Juan'],
+  'Este': ['El Seibo', 'Hato Mayor', 'La Altagracia', 'La Romana', 'Monte Plata', 'San Pedro de Macorís']
+};
+const regionDe = provincia =>
+  Object.keys(REGIONES).find(r => REGIONES[r].includes(provincia)) || 'República Dominicana';
+
 const STAR_LABELS = ['', 'Muy mala', 'Mala', 'Regular', 'Buena', 'Excelente'];
 
 // ─── DATOS (localStorage) ───
@@ -176,7 +190,7 @@ function irAPaso(n) {
   $('[data-prev]', form).hidden = n === 1;
   $('[data-next]', form).hidden = n === 4;
   $('[data-submit]', form).hidden = n !== 4;
-  if (n === 4) renderResumen();
+  if (n === 4) { renderResumen(); renderPreviewIG(); }
   $('#wizard').scrollIntoView({ block: 'start', behavior: 'smooth' });
 }
 
@@ -273,6 +287,17 @@ function renderResumen() {
   });
 }
 
+function renderPreviewIG() {
+  const visible = form.publicable.checked;
+  $('#share-preview').hidden = !visible;
+  if (!visible) return;
+  $('#ig-tipo').textContent = form.tipo.value;
+  $('#ig-sector').textContent = form.sector.value;
+  $('#ig-region').textContent = regionDe(form.provincia.value);
+  $('#ig-fecha').textContent = new Date().toLocaleDateString('es-DO', { month: 'long', year: 'numeric' });
+}
+form.publicable.addEventListener('change', renderPreviewIG);
+
 form.addEventListener('submit', e => {
   e.preventDefault();
   if (!validarPaso(4)) return;
@@ -288,6 +313,8 @@ form.addEventListener('submit', e => {
     fecha: form.fecha.value,
     continua: form.continua.value,
     descripcion: form.descripcion.value.trim(),
+    publicable: form.publicable.checked,
+    region: regionDe(form.provincia.value),
     estado: 'recibida',
     creada: today(),
     mensajes: []
@@ -311,6 +338,7 @@ function reiniciarAsistente(rol) {
   $('#desc-counter').textContent = '0 / 5000';
   $$('.invalid', form).forEach(el => el.classList.remove('invalid'));
   $$('.field-error', form).forEach(el => { el.hidden = true; });
+  $('#share-preview').hidden = true;
   $('#denuncia-ok').hidden = true;
   $('#wizard').closest('.wizard-layout').hidden = false;
   fillSelect(form.tipo, []);

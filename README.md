@@ -35,6 +35,7 @@ También incluye un **ranking público de empresas** con valoraciones anónimas 
 | Las 32 provincias y categorías basadas en el Código de Trabajo (Ley 16-92) | ✅ |
 | Número de expediente y página para consultar el caso | ✅ |
 | Ranking de empresas con búsqueda, filtro por sector y distribución de votos | ✅ |
+| Autorización opcional para publicar una versión anónima en Instagram (sector y región, sin empresa) | ✅ |
 | Preguntas frecuentes y enlaces al Ministerio de Trabajo y la TSS | ✅ |
 | Diseño adaptado a celular y modo oscuro automático | ✅ |
 | Backend con base de datos (Flask + SQLite) | 🚧 En desarrollo |
@@ -51,6 +52,7 @@ El proyecto se construye pensando primero en proteger a quien denuncia.
 - **Ninguna petición a terceros:** las fuentes están alojadas en el propio proyecto (`fonts/`), sin Google Fonts ni CDNs, así que la IP del visitante no se comparte con nadie. Además se usa `referrer: no-referrer`.
 - **Aviso sobre metadatos:** el formulario advierte que las fotos pueden contener la ubicación GPS del teléfono.
 - **Moderación:** los comentarios nuevos del ranking quedan pendientes y no se publican automáticamente.
+- **Publicaciones en Instagram solo con permiso:** se muestran el tipo de situación, el sector y la región (Gran Santo Domingo, Norte, Sur o Este), nunca la empresa ni la provincia exacta, para que la combinación sector + lugar no delate a nadie.
 
 ## Capturas
 
